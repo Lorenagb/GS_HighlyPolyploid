@@ -18,6 +18,9 @@ denom = sum(denom)
 
 Gmatrix = WWt / denom
 
+#The matrix is not invertible - add very small constant (10e-3) to diagonals
+Gmatrix = Gmatrix + 0.001*diag(nrow(Gmatrix))
+
 ## Preparing digenic dominance matrix 
 
 #Get matrix with number of possible pair combinations (C):
@@ -32,4 +35,7 @@ Q = (allele_freq^2 * C_matrix) -
 denomDom = sum(C_matrix[,1]*allele_freq^2*(1- allele_freq)^2) 
 D = t(Q)%*% Q
 Dmatrix = D/denomDom
+
+#If the matrix is not invertible - add very small constant (10e-3) to diagonals
+Dmatrix = Dmatrix + 0.001*diag(nrow(Dmatrix))
 
