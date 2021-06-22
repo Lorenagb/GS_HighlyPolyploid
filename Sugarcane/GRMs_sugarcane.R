@@ -18,7 +18,7 @@ denom = sum(denom)
 
 Gmatrix = WWt / denom
 
-#The matrix is not invertible - add very small constant (10e-3) to diagonals
+#If the matrix is not invertible - add very small constant (10e-3) to diagonals
 Gmatrix = Gmatrix + 0.001*diag(nrow(Gmatrix))
 
 ## Preparing digenic dominance matrix 
