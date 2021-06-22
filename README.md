@@ -2,7 +2,7 @@
 
 Supplementary data and code for paper entitled "Genomic selection with allele dosage information in highly polyploid species"
 
-File names and descriptions are very self exlanatory but here are the contents of this repo laid out for you:
+File names and descriptions are very self exlanatory but here are the contents of this repo:
 
 ## Sugarcane folder
 
@@ -18,3 +18,4 @@ The code to get the GRMs when you have an hexaploid species can be found in the 
 
 AlphaSimR code to generate the same simulated datasets I used in the paper
 "/SweetPotato/GRMs_sweetpotato.R" can be used to get the GRMs here (I simulated an hexaploid)
+
