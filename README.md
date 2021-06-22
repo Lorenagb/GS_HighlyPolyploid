@@ -14,7 +14,7 @@ The code to get the GRMs when you have mixed Ploidy levels can be found in the "
 Phenotypic and SNP data can be found in the "SweetPotato_data.RData" file.
 The code to get the GRMs when you have an hexaploid species can be found in the "GRMs_sweetpotato.R" file
 
-## Simulations
+## Simulations folder
 
 AlphaSimR code to generate the same simulated datasets I used in the paper
 "/SweetPotato/GRMs_sweetpotato.R" can be used to get the GRMs here (I simulated an hexaploid)
