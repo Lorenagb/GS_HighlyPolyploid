@@ -18,5 +18,5 @@ The code to get the GRMs when you have an hexaploid species can be found in the 
 
 AlphaSimR code to generate the same simulated datasets I used in the paper 
 
-"/SweetPotato/GRMs_sweetpotato.R" can be used to get the GRMs here (I simulated an hexaploid)
+"/SweetPotato/GRMs_sweetpotato.R" can be used to get the GRMs for these simulated datasets (I simulated an hexaploid)
 
