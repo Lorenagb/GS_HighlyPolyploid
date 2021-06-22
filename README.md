@@ -1,6 +1,6 @@
 # GS on Highly Polyploid species
 
-Supplementary data and code for paper entitled "Genomic selection with allele dosage information in highly polyploid species"
+Supplementary data and code for paper entitled "Genomic prediction with allele dosage information in highly polyploid species"
 
 File names and descriptions are very self exlanatory but here are the contents of this repo:
 
