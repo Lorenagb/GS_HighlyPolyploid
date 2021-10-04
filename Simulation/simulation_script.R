@@ -4,7 +4,7 @@ library(dplyr)
 ###################################### Simulate Population 1 #############################################
 
 founderPop = runMacs2(nInd = 50, nChr = 15, segSites = 1000, ploidy = 6L, 
-                      Ne = 10, bp = 2e+07, genLen = 1.43, mutRate = 2e-9)
+                      Ne = 50, bp = 2e+07, genLen = 1.43, mutRate = 2e-9)
 #High Dominance
 SP = SimParam$
   new(founderPop)$
