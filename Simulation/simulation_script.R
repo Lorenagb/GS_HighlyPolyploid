@@ -41,11 +41,17 @@ Pop1_pheno_LD = F1@pheno
 
 #Function to select simplex and nuliplex markers
 
-getSimplexSNP = function(pop,sp,nSelSNPs,
+getSimplexGeno = function(pop,sp,nSelGeno,type,
                          simplex1_importance,nuliplex1_importance,
                          simplex0_importance,nuliplex0_importance,
                          alt_importance){
   
+  if(type == "QTL"{
+    tmp = pullQtlGeno(pop, SimParam = sp)
+  }else if(type == "SNP"){
+    tmp = pullSnpGeno(pop, SimParam = sp)
+  }
+
   tmp2 = (tmp == 1) #simplex alt
   tmp3 = (tmp == 0) #nuliplex alt
   tmp4 = (tmp == 5) #simplex ref
@@ -74,6 +80,7 @@ getSimplexSNP = function(pop,sp,nSelSNPs,
   nRef = nSelSNPs*(alt_importance-1)
   
   tmp = tmp[,c(rownames(simplex)[1:nAlt],rownames(simplex2)[1:nRef])]
+  return(tmp)
 }
 
 
@@ -90,13 +97,26 @@ SP = SimParam$
 SP$quadProb = 0.15
 
 pop = newPop(founderPop)
+QTL = pullQtlGeno(pop)
+
+SelQTL = getSimplexGeno(pop = F1, sp = SP, nSelSNPs = 3750, type = "QTL",
+                        simplex1_importance = 2, nuliplex1_importance = 1,
+                        simplex0_importance = 1.5, nuliplex0_importance = 1,
+                        alt_importance = 0.8)
+
+QTL_exclude = which(!colnames(QTL) %in% rownames(SelQTL))
+trait = SP$traits[[1]]
+trait@addEff[QTL_exclude] = 0
+  
+SP$switchTrait(traitPos=1, lociMap=trait, force = T)
+pop = newPop(founderPop)
 F1 = randCross(pop,300)  
 
 F1 = setPheno(F1, H2 = 0.5)
 
 #Get the SNPs of interest
 #The importance values were chosen ad-hoc, in order to mimic the genotype frequencies found in the Sweet Potato dataset
-Pop2_SNP_matrix_HD = getSimplexSNP(pop = F1, sp = SP, nSelSNPs = 11250,
+Pop2_SNP_matrix_HD = getSimplexGeno(pop = F1, sp = SP, nSelSNPs = 11250, type = "SNP",
                                    simplex1_importance = 2, nuliplex1_importance = 1,
                                    simplex0_importance = 1.5, nuliplex0_importance = 1,
                                    alt_importance = 0.8)
@@ -110,6 +130,22 @@ SP = SimParam$
 
 SP$quadProb = 0.15
 
+pop = newPop(founderPop)
+QTL = pullQtlGeno(pop)
+
+SelQTL = getSimplexGeno(pop = F1, sp = SP, nSelSNPs = 3750, type = "QTL",
+                        simplex1_importance = 2, nuliplex1_importance = 1,
+                        simplex0_importance = 1.5, nuliplex0_importance = 1,
+                        alt_importance = 0.8)
+
+QTL_exclude = which(!colnames(QTL) %in% rownames(SelQTL))
+trait = SP$traits[[1]]
+trait@addEff[QTL_exclude] = 0
+  
+SP$switchTrait(traitPos=1, lociMap=trait, force = T)
+pop = newPop(founderPop)
+F1 = randCross(pop,300)  
+     
 F1 = setPheno(F1, H2 = 0.5)
 
 #Get the SNPs of interest
