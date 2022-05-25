@@ -12,14 +12,14 @@ Gmatrix = WWt/denom
 Gmatrix = Gmatrix + 0.001*diag(nrow(Gmatrix))
 
 #Digenic dominance matrix (hexa)
-C_matrix = matrix(length(combn(6,2))/2, nrow = nrow(SNP_matrix), ncol = ncol(SNP_matrix))
-Ploidy_matrix = matrix(6, nrow = nrow(SNP_matrix), ncol = ncol(SNP_matrix))
+C_matrix = matrix(length(combn(6,2))/2, nrow = nrow(t(SNP_matrix)), ncol = ncol(t(SNP_matrix)))
+Ploidy_matrix = matrix(6, nrow = nrow(t(SNP_matrix)), ncol = ncol(t(SNP_matrix)))
 
 Q = (allele_freq^2 * C_matrix) - 
-  (Ploidy_matrix - 1) * allele_freq * SNP_matrix + 
-  0.5 * (SNP_matrix) * (SNP_matrix-1) 
+  (Ploidy_matrix - 1) * allele_freq * t(SNP_matrix) + 
+  0.5 * t(SNP_matrix) * (t(SNP_matrix)-1) 
 
-D = t(Q)%*% Q
+D = crossprod(Q)
 denomDom = sum(C_matrix[,1]*allele_freq^2*(1- allele_freq)^2) 
 Dmatrix = D/denomDom
 
